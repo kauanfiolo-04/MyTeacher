@@ -5,6 +5,7 @@ import { Description, EmptyList, Info, ItemList, ListStyled, Name, Photo, Price 
 
 interface ListProps {
     professors: Professor[],
+    onSelect: (professor: Professor)=>void
 }
 
 const List = (props: ListProps) => {
@@ -19,7 +20,7 @@ const List = (props: ListProps) => {
                                 <Name>{professor.nome}</Name>
                                 <Price>{FormatadorService.valorMonetario(professor.valor_hora)} por hora</Price>
                                 <Description>{FormatadorService.limitarTexto(professor.descridao,200)}</Description>
-                                <Button sx={{ width: '70%' }}>Marcar Aula com Kauan</Button>
+                                <Button onClick={()=>props.onSelect(professor)} sx={{ width: '70%' }}>Marcar Aula com {professor.nome}</Button>
                             </Info>
                         </ItemList>
                     ))}
